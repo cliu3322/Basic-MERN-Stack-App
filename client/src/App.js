@@ -16,7 +16,7 @@ class App extends Component {
             <div className="container-fluid">
                 <NavigationBar />
                 <Switch>
-                    <Route exact path="/pipline/UploadFastQC" component={UploadFastQC} />
+                    <Route exact path="/pipeline/UploadFastQC" component={UploadFastQC} />
                     <Route exact path="/article/add" component={AddArticle} />
                     <Route path="/article/edit/:id" component={EditArticle} />
                     <Route path="/articles/:id" component={FullArticle} />
