@@ -6,6 +6,7 @@ import Signup from './containers/Users/Signup/Signup';
 import Login from './containers/Users/Login/Login';
 import FullArticle from './containers/Articles/FullArticle/FullArticle';
 import AddArticle from './containers/Articles/AddArticle/AddArticle';
+import UploadFastQC from './containers/pipeline/UploadFastQC/UploadFastQC';
 import EditArticle from './containers/Articles/EditArticle/EditArticle';
 import NavigationBar from './containers/NavigationBar/NavigationBar';
 
@@ -15,6 +16,7 @@ class App extends Component {
             <div className="container-fluid">
                 <NavigationBar />
                 <Switch>
+                    <Route exact path="/pipline/UploadFastQC" component={UploadFastQC} />
                     <Route exact path="/article/add" component={AddArticle} />
                     <Route path="/article/edit/:id" component={EditArticle} />
                     <Route path="/articles/:id" component={FullArticle} />
