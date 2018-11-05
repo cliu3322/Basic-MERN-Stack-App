@@ -14,7 +14,7 @@ const options = (data) => {
 
 export const submitNewFastQC = (fastQCData) => {
     return dispatch => {
-        return fetch(URL + '/pipline/UploadFastQC', options(fastQCData))
+        return fetch(URL + '/pipeline/UploadFastQC', options(fastQCData))
         .then(res => res.json())
     }
 };

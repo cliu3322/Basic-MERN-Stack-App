@@ -4,6 +4,7 @@ import bodyParser from 'body-parser';
 
 import Article from './models/articlesModel.js';
 import articles from './routes/articlesRoute.js'
+import pipeline from './routes/pipelineRoute.js'
 import users from './routes/usersRoute.js'
 
 mongoose.connect('mongodb://localhost/basic-mern-app');
@@ -39,8 +40,10 @@ app.get('/', (req, res) => {
     })
 });
 
+
 app.use('/articles', articles);
 app.use('/users', users);
+app.use('/pipeline', pipeline);
 
 app.listen(5000, () => {
     console.log('Server started on port 5000');
