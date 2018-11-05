@@ -38,7 +38,7 @@ router.get('/:id', (req, res) => {
 })
 
 router.post('/UploadFastQC', isAuthenticated, (req, res) => {
-    console.log('kkkkk');
+    console.log(req);
     const title = req.body.title || '';
     const author = req.body.author || '';
     const body = req.body.body || '';

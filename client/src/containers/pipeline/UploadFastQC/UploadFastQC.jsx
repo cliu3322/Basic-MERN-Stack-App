@@ -19,11 +19,13 @@ class UploadFastQC extends React.Component {
     const data = new FormData();
     data.append('file', this.uploadInput.files[0]);
     data.append('filename', this.fileName.value);
-
-    this.props.submitNewFastQC(data)
-    .then(res => {
-      console.log(res);
-    })
+    console.log(data);
+    fetch('http://localhost:5000/pipeline/UploadFastQC', {
+      method: 'POST',
+      body: data,
+    }).then((response) => {
+      //console.log(response);
+    });
   }
 
   render() {
