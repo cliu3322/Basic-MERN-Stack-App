@@ -17,9 +17,11 @@ class UploadFastQC extends React.Component {
     ev.preventDefault();
 
     const data = new FormData();
-    data.append('file', this.uploadInput.files[0]);
-    data.append('filename', this.fileName.value);
-    console.log(data);
+    data.append('file1', this.uploadInput.files[0]);
+    data.append('file2', this.uploadInput.files[1]);
+    console.log(this.uploadInput.files[0]);
+    console.log(this.uploadInput.files[1]);
+    //data.append('filename', this.fileName.value);
     fetch('http://localhost:5000/pipeline/UploadFastQC', {
       method: 'POST',
       body: data,
@@ -35,13 +37,12 @@ class UploadFastQC extends React.Component {
           <input ref={(ref) => { this.uploadInput = ref; }} type="file" />
         </div>
         <div>
-          <input ref={(ref) => { this.fileName = ref; }} type="text" placeholder="Enter the desired name of file" />
+          <input ref={(ref) => { this.uploadInput = ref; }} type="file" />
         </div>
         <br />
         <div>
           <button>Upload</button>
         </div>
-        <img src={this.state.imageURL} alt="img" />
       </form>
     );
   }
