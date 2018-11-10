@@ -50,23 +50,15 @@ app.use('/users', users);
 
 app.post('/pipeline/UploadFastQC', (req, res, next) => {
   //console.log(req);
-  let fastQCFile1 = req.files.file1;
-  let fastQCFile2 = req.files.file2;
-  console.log(fastQCFile1);
-  console.log('____________________');
-  console.log(fastQCFile2);
-  fastQCFile1.mv(`${__dirname}/public/R1.fastq`, function(err) {
+  let imageFile = req.files.file;
+  console.log(req.files.file);
+  imageFile.mv(`${__dirname}/public/${req.files.file.name}`, function(err) {
     if (err) {
       return res.status(500).send(err);
     }
-    res.json({file: `R1`});
+    console.log(req.body.filename);
+    res.json({file: `public/${req.body.filename}.jpg`});
   });
-  // fastQCFile2.mv(`${__dirname}/public/R2.fastq`, function(err) {
-  //   if (err) {
-  //     return res.status(500).send(err);
-  //   }
-  //   res.json({file: `R2`});
-  // });
 })
 
 app.listen(5000, () => {
