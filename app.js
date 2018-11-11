@@ -2,7 +2,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 const fileUpload = require('express-fileupload');
-
+var shell = require('shelljs');
 import Article from './models/articlesModel.js';
 import articles from './routes/articlesRoute.js'
 import pipeline from './routes/pipelineRoute.js'
@@ -45,22 +45,30 @@ app.get('/', (req, res) => {
 
 app.use('/articles', articles);
 app.use('/users', users);
-//app.use('/pipeline', pipeline);
 
 
 app.post('/pipeline/UploadFastQC', (req, res, next) => {
   let imageFile1 = req.files.fastQC1;
   let imageFile2 = req.files.fastQC2;
-  imageFile1.mv(`${__dirname}/public/fastQC1.fastq`, function(err) {
+  imageFile1.mv(`${__dirname}/public/fastQC/fastQC1.fastq`, function(err) {
     if (err) {
       return res.status(500).send(err);
     }
   });
-  imageFile2.mv(`${__dirname}/public/fastQC2.fastq`, function(err) {
+  imageFile2.mv(`${__dirname}/public/fastQC/fastQC2.fastq`, function(err) {
     if (err) {
       return res.status(500).send(err);
     }
   });
+  return res.status(200);
+})
+
+app.post('/pipeline/Trim', (req, res, next) => {
+    shell.exec('trim_galore -a AGATCGGAAGAGC  -q 20 --stringency 5 --paired --length 20 -o public/output/ public/fastQC/fastQC1.fastq public/fastQC/fastQC2.fastq', function(code, stdout, stderr) {
+    console.log('Exit code:', code);
+    console.log('Program output:', stdout);
+    console.log('Program stderr:', stderr);
+  })
   return res.status(200);
 })
 

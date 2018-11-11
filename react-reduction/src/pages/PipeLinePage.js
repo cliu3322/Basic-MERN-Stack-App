@@ -31,6 +31,14 @@ class PipeLinePage extends React.Component {
       //console.log(response);
     });
   };
+  handleTrim = (e) => {
+    e.preventDefault();
+    fetch('http://localhost:5000/pipeline/Trim', {
+      method: 'POST'
+    }).then((response) => {
+      //console.log(response);
+    });
+  };
   render() {
     return (
     <Page title="PipeLine" breadcrumbs={[{ name: 'PipeLine', active: true }]}>
@@ -76,7 +84,22 @@ class PipeLinePage extends React.Component {
           </Card>
         </Col>
       </Row>
-
+      <Row>
+        <Col xl={6} lg={12} md={12}>
+          <Card>
+            <CardHeader>Upload FastQC</CardHeader>
+            <CardBody>
+              <Form onSubmit={this.handleTrim}>
+                <FormGroup check row>
+                  <Col sm={{ size: 10, offset: 2 }}>
+                    <Button>Submit</Button>
+                  </Col>
+                </FormGroup>
+              </Form>
+            </CardBody>
+          </Card>
+        </Col>
+      </Row>
     </Page>
   );
   }
