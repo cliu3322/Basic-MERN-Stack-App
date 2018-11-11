@@ -1,7 +1,7 @@
 import { bindActionCreators } from 'redux';
 import { connect }            from 'react-redux';
 import * as actions           from '../../redux/modules/actions';
-import PipeLine          from './PipeLine';
+import Pipeline               from './Pipeline';
 
 const mapStateToProps = (state) => {
   return {
@@ -24,4 +24,4 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(PipeLine);
+)(Pipeline);
